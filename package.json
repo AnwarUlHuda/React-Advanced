@@ -1,0 +1,17 @@
+{
+  "name": "react-learn",
+  "version": "1.0.0",
+  "description": "Part of learning",
+  "keywords": [
+    "React",
+    "Redux",
+    "JavaScript"
+  ],
+  "license": "ISC",
+  "author": "Anwar Ul Huda",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  }
+}
