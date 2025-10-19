@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 // Specify the directory to traverse (e.g., 'src')
-const directory = path.resolve(__dirname, 'node_modules/react-router-dom/dist'); // Adjust the directory as needed
+const directory = path.resolve(__dirname, 'node_modules/react-router-dom/dist/index.mjs'); // Adjust the directory as needed
 
 // Function to update imports in the files
 const updateImports = (filePath) => {
@@ -35,6 +35,7 @@ const traverseDirectory = (dir) => {
       traverseDirectory(fullPath);
     } else if (fullPath.endsWith('.mjs') || fullPath.endsWith('.jsx') || fullPath.endsWith('.ts') || fullPath.endsWith('.tsx')) {
       // Update the file if it's a JavaScript or TypeScript file
+      console.log('entered else block')
       updateImports(fullPath);
     }
   });
