@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 // Specify the directory to traverse (e.g., 'src')
-const directory = path.resolve(__dirname, 'node_modules/react-router-dom/dist/index.mjs'); // Adjust the directory as needed
+const directory = path.resolve(__dirname, 'node_modules'); // Adjust the directory as needed
 
 // Function to update imports in the files
 const updateImports = (filePath) => {
