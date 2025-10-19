@@ -5,7 +5,7 @@ const path = require('path');
 const baseDir = path.dirname(__dirname);
 
 // Join with the relative path
-const directory = path.join(baseDir, 'node_modules/react-router-dom/dist'); // Adjust the directory as needed
+const directory = path.resolve(baseDir, 'node_modules/react-router-dom/dist'); // Adjust the directory as needed
 
 // Function to update imports in the files
 const updateImports = (filePath) => {
