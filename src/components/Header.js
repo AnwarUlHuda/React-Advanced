@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { LOGO_URL } from "../utils/constants";
-import userContext from "../utils/userContext";
+import userContext from "../utils/UserContext";
 import { useSelector } from "react-redux";
 import { Link } from "react-router";
 
