@@ -11,7 +11,7 @@ const updateImports = (filePath) => {
   // Replace 'react-router/dom' with 'react-router-dom'
   const updatedContent = content.replace(
     /react-router\/dom/g,
-    "'react-router-dom';"
+    "react-router-dom"
   );
 
   // Write the updated content back to the file if there were changes
