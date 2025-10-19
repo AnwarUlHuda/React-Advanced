@@ -3,7 +3,7 @@ import CardComponent, { WithOnlineLabel } from "../utils/CardComponent";
 import Shimmer from "./Shimmer";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import { DASHBOARD } from "../utils/constants";
-import UserContext from "../utils/userContext";
+import UserContext from "../utils/UserContext";
 import { Link } from "react-router-dom";
 
 export const OnlineCard = WithOnlineLabel(CardComponent);
