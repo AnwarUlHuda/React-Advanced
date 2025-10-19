@@ -15,10 +15,8 @@ const updateImports = (filePath) => {
   );
 
   // Write the updated content back to the file if there were changes
-  if (updatedContent !== content) {
     fs.writeFileSync(filePath, updatedContent, 'utf-8');
     console.log(`Updated import in: ${filePath}`);
-  }
 };
 
 // Traverse the directory to find files to update
@@ -33,7 +31,7 @@ const traverseDirectory = (dir) => {
     if (stat.isDirectory()) {
       // Recursively traverse subdirectories
       traverseDirectory(fullPath);
-    } else if (fullPath.endsWith('.mjs') || fullPath.endsWith('.jsx') || fullPath.endsWith('.ts') || fullPath.endsWith('.tsx')) {
+    } else if (fullPath.endsWith('.mjs') || fullPath.endsWith('.jsx') || fullPath.endsWith('.tsx')) {
       // Update the file if it's a JavaScript or TypeScript file
       console.log('entered else block')
       updateImports(fullPath);
