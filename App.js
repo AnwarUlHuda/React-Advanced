@@ -8,7 +8,7 @@ import Contact from "./src/components/Contact";
 import Error from "./src/components/Error";
 import RestaurantMenu from "./src/components/RestaurantMenu";
 import Shimmer from "./src/components/Shimmer";
-import UserContext from "./src/utils/userContext";
+import UserContext from "./src/utils/UserContext";
 import { Provider } from "react-redux";
 import appStore from "./src/utils/Redux/appStore";
 import Cart from "./src/components/Cart";
