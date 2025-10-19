@@ -10,8 +10,8 @@ const updateImports = (filePath) => {
 
   // Replace 'react-router/dom' with 'react-router-dom'
   const updatedContent = content.replace(
-    /import\s*{\s*HydrateRouter,\s*RouterProvider\s*}\s*from\s*['"]react-router\/dom['"]/g,
-    "import { HydrateRouter, RouterProvider } from 'react-router-dom';"
+    /react-router\/dom/g,
+    "'react-router-dom';"
   );
 
   // Write the updated content back to the file if there were changes
