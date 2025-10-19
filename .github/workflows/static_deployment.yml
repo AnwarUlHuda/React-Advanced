@@ -39,7 +39,7 @@ jobs:
       - name: Install dependencies
         run: npm install
       - name: Update import statement
-        run: node update-imports.js
+        run: node update-imports.cjs
       - name: Build
         run: npm run build
       - name: Setup Pages
