@@ -32,7 +32,7 @@ const traverseDirectory = (dir) => {
     if (stat.isDirectory()) {
       // Recursively traverse subdirectories
       traverseDirectory(fullPath);
-    } else if (fullPath.endsWith('.js') || fullPath.endsWith('.jsx') || fullPath.endsWith('.ts') || fullPath.endsWith('.tsx')) {
+    } else if (fullPath.endsWith('.mjs') || fullPath.endsWith('.jsx') || fullPath.endsWith('.ts') || fullPath.endsWith('.tsx')) {
       // Update the file if it's a JavaScript or TypeScript file
       updateImports(fullPath);
     }
