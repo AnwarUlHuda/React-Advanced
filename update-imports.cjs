@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 // Specify the directory to traverse (e.g., 'src')
-const directory = path.join(__dirname, '../node_modules/react-router-dom/dist'); // Adjust the directory as needed
+const directory = path.join(__dirname, './node_modules/react-router-dom/dist'); // Adjust the directory as needed
 
 // Function to update imports in the files
 const updateImports = (filePath) => {
@@ -25,6 +25,7 @@ const updateImports = (filePath) => {
 const traverseDirectory = (dir) => {
   const files = fs.readdirSync(dir);
 
+  console.log('directory', dir)
   files.forEach((file) => {
     const fullPath = path.join(dir, file);
     const stat = fs.statSync(fullPath);
