@@ -63,7 +63,7 @@ const appRouter = createBrowserRouter([
         errorElement: <Error />
     },
 ],
-// {basename: "/React-Advanced"}
+{basename: "/React-Advanced"}
 )
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
