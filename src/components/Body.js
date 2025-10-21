@@ -20,7 +20,12 @@ const Body = () => {
     }, [])
 
     const fetchData = async () => {
-        const data = await fetch(DASHBOARD);
+        const data = await fetch(DASHBOARD, {
+            mode: 'cors',
+            headers: {
+                'Access-Control-Allow-Origin': '*'
+            }
+        });
         const json = await data.json();
         console.log(json);
         const finalizedData = json.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
@@ -56,7 +61,7 @@ const Body = () => {
                 {filteresResList.map((data) =>
                 (<Link
                     key={data.id}
-                    to={data.name +"/" + data.id}
+                    to={data.name + "/" + data.id}
                 >
                     {data.isOpen == true ? <OnlineCard data={data} /> : <CardComponent data={data} />}
                 </Link>))}
