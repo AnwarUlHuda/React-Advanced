@@ -20,18 +20,18 @@ const Body = () => {
     }, [])
 
     const fetchData = async () => {
-        const data = await fetch(DASHBOARD, {
-            mode: 'cors',
-            headers: {
-                'Access-Control-Allow-Origin': '*'
-            }
-        });
+        try {
+        const data = await fetch(DASHBOARD);
         const json = await data.json();
         console.log(json);
         const finalizedData = json.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
         const result = finalizedData.map((data) => data?.info);
         setResList(result);
         setFilteredList(result);
+        }
+        catch(err){
+            throw new Error(err.message + ' Please enable Cors extension on your browser to fetch data from Swiggy.com')
+        }
     }
     const handleClick = () => {
         setFilteredList(resList.filter((res) => res.avgRating > 4.3));
@@ -43,6 +43,7 @@ const Body = () => {
     if (!isOnline) {
         return <div>Looks like you are offline !, Please check your internet connection</div>
     }
+    
 
     // const { loggedInUser, setUserName } = useContext(UserContext);
 

@@ -22,7 +22,7 @@ const Header = () => {
                     <li><Link to="/grocery">Grocery</Link></li>
                     <li><Link to="/contact">Contact Us</Link></li>
                     <li><Link to = "/cart">{cartIems.length || ""} Cart</Link></li>
-                    <button className="login-btn" onClick={() =>setBtn(prev => prev == 'Login' ? 'Logout' : 'Login')}>{btn}</button>
+                    <button className="login-btn cursor-pointer" onClick={() =>setBtn(prev => prev == 'Login' ? 'Logout' : 'Login')}>{btn}</button>
                 </ul>
             </div>
         </div>
