@@ -16,7 +16,7 @@
     "build": "parcel build index.html",
     "test": "jest",
     "watch-test": "jest --watch",
-    "predeploy": "parcel build index.html --public-url /React-Advanced/",
+    "predeploy": "parcel build index.html --public-url /React-Advanced",
     "deploy": "gh-pages -d dist"
   },
   "devDependencies": {
