@@ -64,6 +64,5 @@ const appRouter = createBrowserRouter([
     },
 ])
 
-const div = <div id="root">nested</div>
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(<RouterProvider router={appRouter} />);
