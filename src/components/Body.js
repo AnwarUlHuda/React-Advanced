@@ -13,37 +13,62 @@ const Body = () => {
     const [resList, setResList] = useState([]);
     const [filteresResList, setFilteredList] = useState([]);
     const [searchText, setSearchText] = useState('');
-    const isOnline = useOnlineStatus();
+    const [positions, setPositions] = useState();
+    const [err, setErr] = useState('');
+
+    useEffect(() => { getLocation() }, []);
 
     useEffect(() => {
-        fetchData();
-    }, [])
+        if (positions)
+            fetchData();
+    }, [positions])
+
+    const getLocation = async () => {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(success, error);
+        }
+    }
+
+    const success = async (position) => {
+        setPositions({
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude
+        })
+    }
+
+    const error = () => setPositions({ latitude: 18.4326892, longitude: 79.12960369999999 })
 
     const fetchData = async () => {
+        setErr('');
         try {
-        const data = await fetch(DASHBOARD);
-        const json = await data.json();
-        console.log(json);
-        const finalizedData = json.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
-        const result = finalizedData.map((data) => data?.info);
-        setResList(result);
-        setFilteredList(result);
+            const data = await fetch(DASHBOARD + `lat=${positions.latitude}&lng=${positions.longitude}&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING`);
+            const json = await data.json();
+            console.log(json);
+            try {
+                const finalizedData = json.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+                const result = finalizedData.map((data) => data?.info);
+                setResList(result);
+                setFilteredList(result);
+            }
+            catch (err) {
+                setErr('Location Unserviceable at this moment')
+            }
         }
-        catch(err){
-            throw new Error(err.message + ' Please enable Cors extension on your browser to fetch data from Swiggy.com')
+        catch (err) {
+            setErr(err.message + ' data... Please enable CORS in your browser')
         }
     }
     const handleClick = () => {
-        setFilteredList(resList.filter((res) => res.avgRating > 4.3));
+        setFilteredList(filteresResList.filter((res) => res.avgRating > 4.3));
     }
     const handleSearch = () => {
         setFilteredList(resList.filter((res) => res.name.toLowerCase().includes(searchText.toLowerCase())))
     }
 
-    if (!isOnline) {
-        return <div>Looks like you are offline !, Please check your internet connection</div>
+    if (err) {
+        return <div className="flex text-red-500 font-semibold justify-center">{err}</div>
     }
-    
+
 
     // const { loggedInUser, setUserName } = useContext(UserContext);
 
@@ -55,7 +80,10 @@ const Body = () => {
                 <div className="filter">
                     <button className="border-2 rounded p-1 px-4 bg-teal-600 text-white cursor-pointer" onClick={handleClick}>Top Rated Restaurants</button>
                 </div>
-                <button className="border-2 border-red-800 rounded p-1 px-4 bg-red-600 text-white cursor-pointer" onClick={() => setFilteredList(resList)}>Clear</button>
+                <button className="border-2 border-red-800 rounded p-1 px-4 bg-red-600 text-white cursor-pointer" onClick={() => {
+                    setFilteredList(resList)
+                    setSearchText('')
+                }}>Clear</button>
             </div>
             <div className="absolute top-0 right-10 text-md">Total Restaurants : <span className="text-blue-800 font-bold">{filteresResList.length}</span></div>
             <div className="flex flex-wrap gap-15 justify-center">

@@ -12,19 +12,22 @@ import UserContext from "./src/utils/UserContext";
 import { Provider } from "react-redux";
 import appStore from "./src/utils/Redux/appStore";
 import Cart from "./src/components/Cart";
+import useOnlineStatus from "./src/utils/useOnlineStatus";
 
 const Grocery = lazy(() => import("./src/components/Grocery"));
 
 
 const AppLayout = () => {
     const [userName, setUserName] = useState('')
+    const isOnline = useOnlineStatus();
     return (
         <Provider store={appStore}>
             {/* <UserContext value={{ loggedInUser: userName, setUserName }}> */}
-                <div className="app bg-amber-300 min-h-[100vh]" >
-                    <Header />
-                    <Outlet />
-                </div>
+            <div className="app bg-amber-300 min-h-[100vh]" >
+                <Header />
+                {isOnline ? <Outlet /> : <div className="flex text-amber-900 text-md font-semibold py-8 justify-center">Looks like you are offline !, Please check your internet connection</div>
+                }
+            </div>
             {/* </UserContext> */}
         </Provider>)
 }
@@ -57,13 +60,13 @@ const appRouter = createBrowserRouter([
             },
             {
                 path: '/cart',
-                element : <Cart/>
+                element: <Cart />
             }
         ],
         errorElement: <Error />
     },
 ],
-{basename: "/React-Advanced"}
+    {basename: "/React-Advanced"}
 )
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
