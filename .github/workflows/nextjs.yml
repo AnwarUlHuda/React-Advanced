@@ -41,7 +41,7 @@ jobs:
       - name: Update import statement
         run: node update-imports.cjs
       - name: Build
-        run: npm run build
+        run: npm run deploy
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
