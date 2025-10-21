@@ -2,7 +2,7 @@
   "name": "react-learn",
   "version": "1.0.0",
   "description": "Part of learning",
-  "homepage": "https://anwarulhuda.github.io/React-Advanced/React-Advanced",
+  "homepage": "https://anwarulhuda.github.io/React-Advanced",
   "keywords": [
     "React",
     "Redux",
@@ -16,7 +16,7 @@
     "build": "parcel build index.html",
     "test": "jest",
     "watch-test": "jest --watch",
-    "predeploy": "parcel build index.html",
+    "predeploy": "parcel build index.html --public-url /React-Advanced",
     "deploy": "gh-pages -d dist"
   },
   "devDependencies": {
